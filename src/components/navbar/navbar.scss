@@ -1,0 +1,55 @@
+.navbar-container{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--pink-color);
+    width: 100%;
+    height: 8vh;
+}
+
+.logo-container{
+    width: 30%;
+    height: 100%;
+}
+
+.logo{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.hamburger-menu{
+    background-color: transparent;
+    border: none;
+}
+
+.icon{
+    height: 1.6rem;
+    fill: var(--dark-font-color);
+}
+.wave{
+    fill: var(--pink-color);
+}
+.wave-container{
+    border: none;
+    background-color: transparent;
+    height: 10vh;
+    background-image: url('src/assets/wave.svg');
+    background-size: contain;
+}
