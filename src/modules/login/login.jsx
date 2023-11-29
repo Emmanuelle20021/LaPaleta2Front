@@ -1,4 +1,7 @@
 import './login.scss'
+import { Input } from '../../components/input_form/input'
+
+const phonePattern = "[0-9]{3}(-?)[0-9]{3}(-?)[0-9]{3}"
 
 export function Login(){
     return <div className="page grid-login">
@@ -10,23 +13,9 @@ export function Login(){
         <aside className="login-container">
             <form action="" className='form'>
                 <p className="form-title">Bienvenido</p>
-                <label htmlFor="" className='form-label email-label with-icon'>
-                    <p className='label-p'>Correo Electrónico</p>
-                    <input className='form-input' placeholder='Correo Electrónico' type="text" name="" id="" />
-                </label>
-                <label htmlFor="" className='form-label password-label with-icon '>
-                    <p className='label-p'>Contraseña</p>
-                    <input className='form-input' placeholder='Contraseña' type="number" name="" id="" />
-                </label>
-                <label htmlFor="" className='form-label password-label with-icon '>
-                    <p className='label-p'>Contraseña</p>
-                    <input className='form-input' placeholder='Contraseña' type="password" name="" id="" />
-                </label>
-                <a href="#" className='form-a'>Olvide mi contraseña</a>
-                <label htmlFor="" className='form-label'>
-                    <p className='label-p'>Aún no estas Registrado?</p>
-                    <a href="#" className='form-a'>Registrate Aqui</a>
-                </label>
+                <Input id="email-input-login" name="email-input" placeholder="Correo Electrónico" type="email"></Input>
+                <Input id="phone-input-login" name="phone-input" placeholder="Teléfono" type="tel" pattern={phonePattern}></Input>
+                <Input id="password-input-login" name="password-input" placeholder="Contraseña" type="password"></Input>
                 <button type="submit" className='form-submit-button'>Aceptar</button>
             </form>
         </aside>

@@ -15,7 +15,7 @@ function App() {
   return (
     <Switch>
       <Route path='/' component={MainPage} />
-      <Route path='/login'> Estas en el registro </Route>
+      <Route path='/login' component={Login}> Estas en el registro </Route>
       <Route path='/signin'> Estas en el inicio de sesión </Route>
       <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
 
