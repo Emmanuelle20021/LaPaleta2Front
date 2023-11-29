@@ -1,0 +1,30 @@
+.form-label{
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    .form-input{
+        display: flex;
+        width: 90%;
+        padding: 2%;
+        border-radius: 10px;
+        background-color: var(--pink-color);
+        font-weight: 600;
+        border: 2px solid var(--dark-font-color);
+        
+    }
+}
+
+.label-p{
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.input-icon-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
