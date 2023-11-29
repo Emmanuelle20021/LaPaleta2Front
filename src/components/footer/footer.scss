@@ -1,0 +1,15 @@
+.footer-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: .5rem 10%;
+    background-color: #472020;
+}
+
+.social-media-icon{
+    display: flex;
+    height: 100%;
+    color: var(--white-color);
+    text-decoration: none;
+}

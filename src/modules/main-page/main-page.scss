@@ -1,4 +1,16 @@
 .page{
+    position: relative;
     width: 100%;
     min-height: 100vh;
+}
+.nav-container{
+    position: sticky;
+    top: 0;
+    z-index: 7;
+}
+.categories-product-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--hero-height);
+    gap: 2rem;
 }

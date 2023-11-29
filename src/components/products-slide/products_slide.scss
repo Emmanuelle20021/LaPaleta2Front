@@ -1,0 +1,29 @@
+.product-slide-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 350px;
+}
+
+.slide-title{
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+
+.products-list{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+.product-item{
+    min-width: 220px;
+    height: 100%;
+    scroll-snap-align: center;
+}
