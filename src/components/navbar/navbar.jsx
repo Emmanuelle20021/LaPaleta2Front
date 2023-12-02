@@ -3,7 +3,8 @@ import SearchIcon from '../../assets/search.jsx'
 import UserIcon from '../../assets/user.jsx'
 import KitchenIcon from '../../assets/kitchen.jsx';
 import { PATH } from '../../constants/properties.js';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Account from '../account/accountmodal.jsx';
 
 const categories = [
     {
@@ -31,6 +32,24 @@ const categories = [
 export default function Navbar() {
 
     const [showed, setShowed] = useState(false) 
+    const [showModal, setShowModal] = useState(false)
+    const closeModal = () => setShowModal(false)
+
+    const btnUserIcon = useRef()
+
+    useEffect(() => {
+        const closeModalOnClickOutside = ({target}) => {
+            if(!btnUserIcon) return
+
+            if(btnUserIcon.current.contains(target)) return
+
+            setShowModal(false)
+        }
+
+        document.addEventListener('mousedown', closeModalOnClickOutside)
+
+        return () => document.removeEventListener('mousedown', closeModal)
+    }, [])
 
     function swapNavbar() {
         const categoriesContainer = document.getElementById('categories-container')
@@ -66,12 +85,13 @@ export default function Navbar() {
                             <button className='categorie-button'>
                                 <SearchIcon></SearchIcon>
                             </button>
-                            <button className='categorie-button'>
+                            <button ref={btnUserIcon} className='categorie-button' onClick={() => setShowModal(prev => !prev)}>
                                 <UserIcon></UserIcon>
                             </button>
                             <button className='categorie-button'>
                                 <KitchenIcon></KitchenIcon>
                             </button>
+                            <Account showModal={showModal}  />
                         </li>
                     </ul>
                 </section>
