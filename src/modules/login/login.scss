@@ -1,7 +1,15 @@
+.margin-top{
+    margin-top: 2rem;
+}
+
+.padding{
+    padding: 0 3% 3% 3%;
+}
+
 .grid-login{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto 1fr 1fr auto;
 }
 
 .image-side{
@@ -16,11 +24,11 @@
     position: absolute;
     justify-content: center;
     align-items: center;
+    height: 80%;
 }
 
 .image{
-    width: 100%;
-    height: 100%;
+    width: auto;
     height: auto;
     object-fit: cover;
     clip-path: circle(50% at 50% 50%);
@@ -34,17 +42,74 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .form{
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
+    padding: 2%;
     justify-content: center;
 }
 
 .form-title{
     width: 100%;
     font-size: 2rem;
+}
+
+.form-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.form-submit-button{
+    align-self: center;
+    color: var(--white-color);
+    background-color: var(--pink-color);
+    height: 2.5rem;
+    border-radius: 10px;
+    max-width: 250px;
+    min-width: 150px;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.login-footer{
+    max-height: 10vh;
+}
+
+
+@media (min-width: 465px) {
+    .grid-login{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 'navbar navbar' 'img form' 'footer footer';
+    }
+    .form{
+        width: 90%;
+    }
+    .image-side{
+        grid-area: img;
+    }
+    .login-container{
+        grid-area: form;
+    }
+    .login-footer{
+        max-height: 10vh;
+        grid-area: footer;
+    }
+    .login-nav{
+        max-height: 10vh;
+        grid-area: navbar;
+    }
+    .image{
+        height: auto;
+        width: 100%;
+    }
 }
