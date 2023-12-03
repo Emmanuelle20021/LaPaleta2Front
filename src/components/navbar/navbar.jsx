@@ -5,6 +5,8 @@ import KitchenIcon from '../../assets/kitchen.jsx';
 import { PATH } from '../../constants/properties.js';
 import { useEffect, useRef, useState } from 'react';
 import Account from '../account/accountmodal.jsx';
+import { useContext } from 'react';
+import { FridgeContext } from '../../App.jsx';
 
 const categories = [
     {
@@ -30,7 +32,7 @@ const categories = [
 ];
 
 export default function Navbar() {
-
+    const { setShowFridge } = useContext(FridgeContext)
     const [showed, setShowed] = useState(false) 
     const [showModal, setShowModal] = useState(false)
     const closeModal = () => setShowModal(false)
@@ -48,7 +50,7 @@ export default function Navbar() {
 
         document.addEventListener('mousedown', closeModalOnClickOutside)
 
-        return () => document.removeEventListener('mousedown', closeModal)
+        return () => document.removeEventListener('mousedown', closeModalOnClickOutside)
     }, [])
 
     function swapNavbar() {
@@ -88,7 +90,7 @@ export default function Navbar() {
                             <button ref={btnUserIcon} className='categorie-button' onClick={() => setShowModal(prev => !prev)}>
                                 <UserIcon></UserIcon>
                             </button>
-                            <button className='categorie-button'>
+                            <button className='categorie-button' onClick={() => setShowFridge(prev => !prev)}>
                                 <KitchenIcon></KitchenIcon>
                             </button>
                             <Account showModal={showModal}  />
