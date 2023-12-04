@@ -22,20 +22,40 @@
     padding: 16px 24px;
     background: radial-gradient(50% 50% at 50% 50%, #FFFDFE 0%, #BEC4C6 100%);
 
-    h2 {
-        font-size: 16px;
-        padding: 8px 64px;
-        border-radius: 10px;
-        border: 3px solid var(--dark-font-color);
-        background: #EBECF5;
-    }
 }
 
 .inside-fridge {
+    margin-top: 24px;
+    margin-bottom: 24px;
     overflow-y: scroll;
-    width: 224px;
-    height: 343px;
-    background-color: red;
-    background: url(../../../public/inside-fridge.svg) top left no-repeat;
+    height: 376px;
+    background: url(inside-fridge.svg) top left no-repeat;
     background-size: contain;
+}
+
+.border {
+    padding: 8px 64px;
+    border-radius: 10px;
+    border: 3px solid var(--dark-font-color);
+    background: #EBECF5;
+}
+
+.cost {
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 245px;
+}
+
+.link {
+    margin-top: 16px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: var(--purple-color);
 }

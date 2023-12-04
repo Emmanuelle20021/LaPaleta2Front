@@ -5,8 +5,7 @@ import KitchenIcon from '../../assets/kitchen.jsx';
 import { PATH } from '../../constants/properties.js';
 import { useEffect, useRef, useState } from 'react';
 import Account from '../account/accountmodal.jsx';
-import { useContext } from 'react';
-import { FridgeContext } from '../../App.jsx';
+import useFridge from '../../customhooks/useFridgeContext.jsx';
 
 const categories = [
     {
@@ -32,10 +31,9 @@ const categories = [
 ];
 
 export default function Navbar() {
-    const { setShowFridge } = useContext(FridgeContext)
+    const { showFridge } = useFridge()
     const [showed, setShowed] = useState(false) 
     const [showModal, setShowModal] = useState(false)
-    const closeModal = () => setShowModal(false)
 
     const btnUserIcon = useRef()
 
@@ -90,7 +88,7 @@ export default function Navbar() {
                             <button ref={btnUserIcon} className='categorie-button' onClick={() => setShowModal(prev => !prev)}>
                                 <UserIcon></UserIcon>
                             </button>
-                            <button className='categorie-button' onClick={() => setShowFridge(prev => !prev)}>
+                            <button className='categorie-button' onClick={showFridge}>
                                 <KitchenIcon></KitchenIcon>
                             </button>
                             <Account showModal={showModal}  />
