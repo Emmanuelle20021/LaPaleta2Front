@@ -68,7 +68,7 @@ export default function Navbar() {
         <section className='navbar-container'>
             <nav id='navbar' className='navbar-ajust'>
                 <button onClick={returnToMenu} className='logo-container'>
-                    <img className='logo' src="src/assets/LaPaletaLogo.png" alt="Logo la paleta" />
+                    <img className='logo' src="/src/assets/LaPaletaLogo.png" alt="Logo la paleta" />
                 </button>
                 <section id='categories-container' className='categories-container hidden'>
                     <ul className='list-categories'>
