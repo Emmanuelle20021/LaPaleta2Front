@@ -113,3 +113,10 @@ HTML {
 .swal-button--confirm {
   background-color: var(--blue-color);
 }
+
+.order-container {
+  padding: 4px 8px;
+  border: 2px solid var(--dark-font-color);
+  border-radius: 5px;
+  background-color: var(--white-color);
+}

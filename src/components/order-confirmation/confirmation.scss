@@ -1,0 +1,12 @@
+.order-confirmation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    justify-content: center;
+
+    p {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}

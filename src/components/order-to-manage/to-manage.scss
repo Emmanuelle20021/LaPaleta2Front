@@ -1,0 +1,16 @@
+.to-manage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    :first-child {
+        p {
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+}

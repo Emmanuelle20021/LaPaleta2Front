@@ -1,0 +1,21 @@
+.to-order-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+
+    :first-child {
+
+        p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        p:last-of-type {
+            &::before {
+                content: '$ ';
+            }
+        }
+    }
+}
