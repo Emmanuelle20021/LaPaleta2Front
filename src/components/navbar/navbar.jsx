@@ -2,31 +2,31 @@ import './navbar.scss'
 import SearchIcon from '../../assets/search.jsx'
 import UserIcon from '../../assets/user.jsx'
 import KitchenIcon from '../../assets/kitchen.jsx';
-import { PATH } from '../../constants/properties.js';
 import { useEffect, useRef, useState } from 'react';
 import Account from '../account/accountmodal.jsx';
 import useFridge from '../../customhooks/useFridgeContext.jsx';
+import { useLocation, useRoute } from 'wouter'
 
 const categories = [
     {
         name: 'paletas',
-        ref: '#'
+        ref: 'paletas'
     },
     {
         name: 'helados',
-        ref: '#'
+        ref: 'helados'
     },
     {
         name: 'waffles',
-        ref: '#'
+        ref: 'waffles'
     },
     {
         name: 'alimentos',
-        ref: '#'
+        ref: 'alimentos'
     },
     {
         name: 'bebidas',
-        ref: '#'
+        ref: 'bebidas'
     },
 ];
 
@@ -34,6 +34,8 @@ export default function Navbar() {
     const { showFridge } = useFridge()
     const [showed, setShowed] = useState(false) 
     const [showModal, setShowModal] = useState(false)
+    const [_, navigate] = useLocation()
+    const [isHere] = useRoute("/products/:category");
 
     const btnUserIcon = useRef()
 
@@ -64,6 +66,17 @@ export default function Navbar() {
         setShowed(!showed)
     }
 
+    function goTo(ref) {
+        return () => {
+            if (isHere) navigate(`./${ref}`)
+            else navigate(`products/${ref}`)
+        }
+    }
+
+    function returnToMenu() {
+        navigate("/")
+    }
+
     return (
         <section className='navbar-container'>
             <nav id='navbar' className='navbar-ajust'>
@@ -76,7 +89,7 @@ export default function Navbar() {
                             categories.map(categorie => {
                                 return (
                                     <li key={categorie.name + categorie.ref} className='categories-item'>
-                                        <button className='categorie-button'>{categorie.name}</button>
+                                        <button className='categorie-button' onClick={goTo(categorie.ref)}>{categorie.name}</button>
                                     </li>
                                 );
                             })
@@ -113,8 +126,4 @@ export default function Navbar() {
             <div className='wave-container'></div>
         </section>
     )
-}
-
-function returnToMenu() {
-    window.location.replace(PATH);
 }
