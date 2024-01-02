@@ -5,6 +5,7 @@ import { MainPage } from './modules/main-page/main-page.jsx'
 import FridgeModal from './components/fridge/fridgemodal.jsx'
 import Navbar from './components/navbar/navbar.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
+import AuthProvider from './contexts/auth.jsx'
 
 function Products({ params: { category } }) {
   return (
@@ -18,37 +19,39 @@ function Products({ params: { category } }) {
 function App() {
 
   return (
-    <FridgeProvider>
-      <FridgeModal />
+    <AuthProvider>
+      <FridgeProvider>
+        <FridgeModal />
 
-      <Switch>
-        <Route path='/' component={MainPage} />
-        <Route path='/login' component={Login}> Estas en el registro </Route>
-        <Route path='/signin'> Estas en el inicio de sesión </Route>
-        <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
+        <Switch>
+          <Route path='/' component={MainPage} />
+          <Route path='/login' component={Login}> Estas en el inicio de sesión </Route>
+          <Route path='/register'> Estas en el registro </Route>
+          <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
 
-        {/* Only Custumer */}
-        <Route path='/fridge'> Nevera </Route>
+          {/* Only Custumer */}
+          <Route path='/fridge'> Nevera </Route>
 
-        {/* Should vary based on the role */}
-        <Route path='/account'> Estas en la configuración de la cuenta </Route>
+          {/* Should vary based on the role */}
+          <Route path='/account'> Estas en la configuración de la cuenta </Route>
 
-        {/* Only Admin */}
-        <Route path='/products'> Vista de productos del vendedor </Route>
-        <Route path='/products/new'> Agregar nuevo producto </Route>
+          {/* Only Admin */}
+          <Route path='/products'> Vista de productos del vendedor </Route>
+          <Route path='/products/new'> Agregar nuevo producto </Route>
 
-        {/* Only Customer  */}
-        <Route path='/products/:category' component={Products} />
+          {/* Only Customer  */}
+          <Route path='/products/:category' component={Products} />
 
-        {/* Should vary based on the role */}
-        <Route path='/products/:category/:idProduct'> Detalle de un producto </Route>
-        <Route path='/orders'> Ordenes del usuario </Route>
-        <Route path='/orders/:id'> Detalle de la orden del usuario </Route>
+          {/* Should vary based on the role */}
+          <Route path='/products/:category/:idProduct'> Detalle de un producto </Route>
+          <Route path='/orders'> Ordenes del usuario </Route>
+          <Route path='/orders/:id'> Detalle de la orden del usuario </Route>
 
-        {/* Default route */}
-        <Route component={MainPage} />
-      </Switch>
-    </FridgeProvider>
+          {/* Default route */}
+          <Route component={MainPage} />
+        </Switch>
+      </FridgeProvider>
+    </AuthProvider>
   )
 }
 

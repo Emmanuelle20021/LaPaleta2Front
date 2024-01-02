@@ -2,10 +2,11 @@ import './navbar.scss'
 import SearchIcon from '../../assets/search.jsx'
 import UserIcon from '../../assets/user.jsx'
 import KitchenIcon from '../../assets/kitchen.jsx';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Account from '../account/accountmodal.jsx';
 import useFridge from '../../customhooks/useFridgeContext.jsx';
 import { useLocation, useRoute } from 'wouter'
+import { AuthContext } from '../../contexts/auth.jsx';
 
 const categories = [
     {
@@ -31,6 +32,7 @@ const categories = [
 ];
 
 export default function Navbar() {
+    const { token, cleanToken } = useContext(AuthContext)
     const { showFridge } = useFridge()
     const [showed, setShowed] = useState(false) 
     const [showModal, setShowModal] = useState(false)
@@ -77,6 +79,16 @@ export default function Navbar() {
         navigate("/")
     }
 
+    function manageModalAccount() {
+        if(token) setShowModal(true)
+        else navigate("/login")
+    }
+
+    function handleLogout() {
+        cleanToken()
+        navigate('/login')
+    }
+
     return (
         <section className='navbar-container'>
             <nav id='navbar' className='navbar-ajust'>
@@ -98,13 +110,14 @@ export default function Navbar() {
                             <button className='categorie-button'>
                                 <SearchIcon></SearchIcon>
                             </button>
-                            <button ref={btnUserIcon} className='categorie-button' onClick={() => setShowModal(prev => !prev)}>
+                            <button ref={btnUserIcon} className='categorie-button' onClick={manageModalAccount}>
                                 <UserIcon></UserIcon>
                             </button>
-                            <button className='categorie-button' onClick={showFridge}>
+                            { token && <button className='categorie-button' onClick={showFridge}>
                                 <KitchenIcon></KitchenIcon>
                             </button>
-                            <Account showModal={showModal}  />
+                            }
+                            <Account showModal={showModal} onClickAccount={ () => navigate('/account') } onLogout={handleLogout}  />
                         </li>
                     </ul>
                 </section>
