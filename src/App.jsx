@@ -3,6 +3,7 @@ import './App.scss'
 import { Login } from './modules/login/login.jsx'
 import { MainPage } from './modules/main-page/main-page.jsx'
 import { Register } from './modules/register/register.jsx'
+import { NewProduct } from './modules/newProduct/newProduct.jsx'
 import FridgeModal from './components/fridge/fridgemodal.jsx'
 import Navbar from './components/navbar/navbar.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
@@ -38,7 +39,7 @@ function App() {
 
           {/* Only Admin */}
           <Route path='/products'> Vista de productos del vendedor </Route>
-          <Route path='/products/new'> Agregar nuevo producto </Route>
+          <Route path='/products/new' component={NewProduct}> Agregar nuevo producto </Route>
 
           {/* Only Customer  */}
           <Route path='/products/:category' component={Products} />
