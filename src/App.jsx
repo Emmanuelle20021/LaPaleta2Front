@@ -2,6 +2,7 @@ import { Route, Switch } from 'wouter'
 import './App.scss'
 import { Login } from './modules/login/login.jsx'
 import { MainPage } from './modules/main-page/main-page.jsx'
+import { Register } from './modules/register/register.jsx'
 import FridgeModal from './components/fridge/fridgemodal.jsx'
 import Navbar from './components/navbar/navbar.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
@@ -26,7 +27,7 @@ function App() {
         <Switch>
           <Route path='/' component={MainPage} />
           <Route path='/login' component={Login}> Estas en el inicio de sesión </Route>
-          <Route path='/register'> Estas en el registro </Route>
+          <Route path='/register' component={Register}> Estas en el registro </Route>
           <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
 
           {/* Only Custumer */}
