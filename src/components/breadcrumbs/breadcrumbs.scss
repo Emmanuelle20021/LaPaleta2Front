@@ -1,0 +1,18 @@
+.wrapper-breadcrumbs {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.breadcrumbs-separator {
+    fill: var(--blue-color);
+}
+
+.breadcrumbs-el {
+    cursor: pointer;
+}
+
+.wrapper-breadcrumbs-el {
+    display: flex;
+    gap: 0.5rem;
+}
