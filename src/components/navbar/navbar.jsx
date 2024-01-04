@@ -1,51 +1,28 @@
 import './navbar.scss'
-import SearchIcon from '../../assets/search.jsx'
 import UserIcon from '../../assets/user.jsx'
 import KitchenIcon from '../../assets/kitchen.jsx';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Account from '../account/accountmodal.jsx';
 import useFridge from '../../customhooks/useFridgeContext.jsx';
-import { useLocation, useRoute } from 'wouter'
+import { useLocation } from 'wouter'
 import { AuthContext } from '../../contexts/auth.jsx';
-
-const categories = [
-    {
-        name: 'paletas',
-        ref: 'paletas'
-    },
-    {
-        name: 'helados',
-        ref: 'helados'
-    },
-    {
-        name: 'waffles',
-        ref: 'waffles'
-    },
-    {
-        name: 'alimentos',
-        ref: 'alimentos'
-    },
-    {
-        name: 'bebidas',
-        ref: 'bebidas'
-    },
-];
+import useCategories from '../../customhooks/useCategories.jsx';
 
 export default function Navbar() {
     const { token, cleanToken } = useContext(AuthContext)
     const { showFridge } = useFridge()
-    const [showed, setShowed] = useState(false) 
+    const [showed, setShowed] = useState(false)
     const [showModal, setShowModal] = useState(false)
     const [_, navigate] = useLocation()
-    const [isHere] = useRoute("/products/:category");
+    const categories = useCategories()
 
     const btnUserIcon = useRef()
 
     useEffect(() => {
-        const closeModalOnClickOutside = ({target}) => {
-            if(!btnUserIcon) return
+        const closeModalOnClickOutside = ({ target }) => {
+            if (!btnUserIcon) return
 
-            if(btnUserIcon.current.contains(target)) return
+            if (btnUserIcon.current.contains(target)) return
 
             setShowModal(false)
         }
@@ -69,24 +46,21 @@ export default function Navbar() {
     }
 
     function goTo(ref) {
-        return () => {
-            if (isHere) navigate(`./${ref}`)
-            else navigate(`products/${ref}`)
-        }
+        return () => navigate(`/products/${ref}`, { replace: true })
     }
 
     function returnToMenu() {
-        navigate("/")
+        navigate("/", { replace: true })
     }
 
     function manageModalAccount() {
-        if(token) setShowModal(true)
-        else navigate("/login")
+        if (token) setShowModal(true)
+        else navigate("/login", { replace: true })
     }
 
     function handleLogout() {
         cleanToken()
-        navigate('/login')
+        navigate('/login', { replace: true })
     }
 
     return (
@@ -100,24 +74,21 @@ export default function Navbar() {
                         {
                             categories.map(categorie => {
                                 return (
-                                    <li key={categorie.name + categorie.ref} className='categories-item'>
-                                        <button className='categorie-button' onClick={goTo(categorie.ref)}>{categorie.name}</button>
+                                    <li key={categorie.name} className='categories-item'>
+                                        <button className='categorie-button' onClick={goTo(categorie.name)}>{categorie.name}</button>
                                     </li>
                                 );
                             })
                         }
                         <li className='categories-item icon-nav-container'>
-                            <button className='categorie-button'>
-                                <SearchIcon></SearchIcon>
-                            </button>
                             <button ref={btnUserIcon} className='categorie-button' onClick={manageModalAccount}>
                                 <UserIcon></UserIcon>
                             </button>
-                            { token && <button className='categorie-button' onClick={showFridge}>
+                            {token && <button className='categorie-button' onClick={showFridge}>
                                 <KitchenIcon></KitchenIcon>
                             </button>
                             }
-                            <Account showModal={showModal} onClickAccount={ () => navigate('/account') } onLogout={handleLogout}  />
+                            <Account showModal={showModal} onClickAccount={() => navigate('/account', { replace: true })} onLogout={handleLogout} />
                         </li>
                     </ul>
                 </section>

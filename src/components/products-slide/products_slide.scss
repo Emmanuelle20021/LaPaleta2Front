@@ -5,6 +5,12 @@
     height: 350px;
 }
 
+.product-slide-container-vertical {
+    display: grid;
+    padding: 1rem 0;
+    height: max-content;
+}
+
 .slide-title{
     padding: 1rem;
     font-size: 1.6rem;
@@ -22,8 +28,31 @@
         display: none;
     }
 }
+
+.products-list-vertical {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+    list-style: none;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+
 .product-item{
     min-width: 220px;
     height: 100%;
+    scroll-snap-align: center;
+}
+
+.product-item-vertical {
+    display: flex;
+    justify-content: center;
+    min-width: 220px;
+    max-height: 245px;
     scroll-snap-align: center;
 }

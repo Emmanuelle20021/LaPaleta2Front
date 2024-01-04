@@ -3,18 +3,14 @@ import './App.scss'
 import { Login } from './modules/login/login.jsx'
 import { MainPage } from './modules/main-page/main-page.jsx'
 import FridgeModal from './components/fridge/fridgemodal.jsx'
-import Navbar from './components/navbar/navbar.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
 import AuthProvider from './contexts/auth.jsx'
+import { ProductDetail } from './modules/product-detail/product-detail.jsx'
+import { ProductCategory } from './modules/product-category/product-category.jsx'
+import { Account } from './modules/account/account.jsx'
+import { Orders } from './modules/orders/orders.jsx'
+import { Fridge } from './modules/fridge/fridge.jsx'
 
-function Products({ params: { category } }) {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <h1>Estas en {category}</h1>
-    </div>
-  )
-}
 
 function App() {
 
@@ -27,24 +23,23 @@ function App() {
           <Route path='/' component={MainPage} />
           <Route path='/login' component={Login}> Estas en el inicio de sesión </Route>
           <Route path='/register'> Estas en el registro </Route>
-          <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
 
           {/* Only Custumer */}
-          <Route path='/fridge'> Nevera </Route>
+          <Route path='/fridge' component={Fridge}/>
 
           {/* Should vary based on the role */}
-          <Route path='/account'> Estas en la configuración de la cuenta </Route>
+          <Route path='/account' component={Account}/>
 
           {/* Only Admin */}
           <Route path='/products'> Vista de productos del vendedor </Route>
           <Route path='/products/new'> Agregar nuevo producto </Route>
 
           {/* Only Customer  */}
-          <Route path='/products/:category' component={Products} />
+          <Route path='/products/:category' component={ProductCategory} />
 
           {/* Should vary based on the role */}
-          <Route path='/products/:category/:idProduct'> Detalle de un producto </Route>
-          <Route path='/orders'> Ordenes del usuario </Route>
+          <Route path='/products/:category/:idProduct' component={ProductDetail} />
+          <Route path='/orders' component={Orders} />
           <Route path='/orders/:id'> Detalle de la orden del usuario </Route>
 
           {/* Default route */}

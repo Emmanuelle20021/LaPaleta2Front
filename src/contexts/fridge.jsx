@@ -22,7 +22,8 @@ export default function FridgeProvider({ children }) {
         }
 
         setProducts(pdts => {
-            const newProducts = [...pdts, newProduct]
+            const pdtWithAmount = {...newProduct, amount: value}
+            const newProducts = [...pdts, pdtWithAmount]
             updateLocalStorage(newProducts)
             return newProducts
         })

@@ -36,7 +36,7 @@ export default function Modal() {
 
     const handleMinus = (product) => () => reduceProduct(product)
     const handleRemove = (product) => () => removeProduct(product)
-    const goToFridge = () => navigate('/fridge')
+    const goToFridge = () => navigate('/fridge', { replace: true })
 
     return (
         <div ref={fridge} className={'modal-fridge ' + (isShowFridge ? 'active-modal-fridge' : 'inactive-modal-fridge')}>

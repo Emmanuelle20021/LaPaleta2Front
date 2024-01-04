@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     padding: 1.5rem;
+    max-width: 14rem;
 }
 .product-card{
     width: auto;
@@ -70,6 +71,7 @@
     background-color: var(--blue-color);
     font-weight: 600;
     padding: .1rem .3rem;
+    text-align: left;
 }
 
 .product-description{
@@ -81,4 +83,6 @@
     text-overflow: ellipsis;
     white-space: wrap;
     overflow: hidden;
+    width: 100%;
+    text-align: left;
 }

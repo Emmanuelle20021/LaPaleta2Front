@@ -30,7 +30,7 @@ body,
 HTML {
   height: 100vh;
   width: 100%;
-  background-color: #dddddd;
+  background-color: var(--white-color);
 }
 
 .warning .swal-title {

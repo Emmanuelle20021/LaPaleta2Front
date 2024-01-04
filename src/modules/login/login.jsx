@@ -34,7 +34,7 @@ export function Login() {
 
         setToken(response.accessToken)
 
-        navigate('/')
+        navigate('/', { replace: true })
     }
 
     return <div className="page grid-login">
@@ -60,9 +60,6 @@ export function Login() {
                 <Input value={pwd} onChange={({ target }) => setPwd(target.value)} required id="password-input-login" name="password-input" placeholder="Contraseña" type="password">
                     <FaLock className='input-icon' />
                 </Input>
-                <div className='form-link'>
-                    <a href="#">Olvide mi contraseña</a>
-                </div>
                 <div className='form-link margin-top'>
                     <p>No tienes una cuenta?</p>
                     <Link href='/register'>
