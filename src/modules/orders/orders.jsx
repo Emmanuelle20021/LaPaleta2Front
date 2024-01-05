@@ -10,7 +10,7 @@ import { ROL } from "../../constants/properties";
 import { navigate } from "wouter/use-location";
 
 export function Orders() {
-    const { token, usrData } = useContext(AuthContext)
+    const { token, usrData, cleanToken } = useContext(AuthContext)
     const [orders, setOrders] = useState([])
 
     const goToLogin = async () => {
@@ -40,6 +40,8 @@ export function Orders() {
 
     }, [usrData])
 
+    const goTo = (id) => () => navigate(`/orders/${id}`)
+
     return (
         <div>
             <Navbar></Navbar>
@@ -47,7 +49,7 @@ export function Orders() {
             <BreadCrumbs routes={[{ name: 'Pedidos', route: 'orders' }]} />
             <div className="orders-cards">
                 {
-                    orders.map(({data, products}) => <OrderCard data={data} pdts={products}/>)
+                    orders.map(({data, products}) => <OrderCard data={data} pdts={products} onClick={goTo(data.idpedido)}/>)
                 }
             </div>
         </div>

@@ -50,6 +50,8 @@ export function Fridge() {
 
             removeAllProducts()
 
+            navigate('/orders')
+
         } catch (err) {
             console.error(err)
             if (err instanceof ValidationError) {

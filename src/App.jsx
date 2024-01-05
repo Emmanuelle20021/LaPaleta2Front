@@ -14,6 +14,7 @@ import { Orders } from './modules/orders/orders.jsx'
 import { Fridge } from './modules/fridge/fridge.jsx'
 import { useContext } from 'react'
 import { ROL } from './constants/properties.js'
+import OrderDetail from './modules/order-detail/order-detail.jsx'
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
         <Route path='/account' component={Account} />
         <Route path='/products/:category/:idProduct' component={ProductDetail} />
         <Route path='/orders' component={Orders} />
-        <Route path='/orders/:id'> Detalle de la orden del usuario </Route>
+        <Route path='/orders/:id' component={OrderDetail}> Detalle de la orden del usuario </Route>
 
         {/* Default route */}
         <Route component={MainPage} />

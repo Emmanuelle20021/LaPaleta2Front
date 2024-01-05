@@ -46,3 +46,16 @@ export async function getOrdersDetails(token, id) {
     return { status: response.status, body }
 
 }
+
+export async function getOrderDetail(token, id_pedido) {
+    const response = await fetch(`${API}/order/${id_pedido}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const body = await response.json()
+
+    return { status: response.status, body }
+}
