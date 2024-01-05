@@ -1,15 +1,10 @@
-.page-new-pdt{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .add-product-page{
     padding: 0 3rem;
 }
 
-.title{
-    padding-left: 1rem;
+.new-pdt-title {
+    padding: 1rem;
+    font-size: 1.6rem;
 }
 
 .adding-product-container{
@@ -84,6 +79,15 @@
         :focus,:active{
             outline: none;
         }
+    }
+
+    .err-msg {
+        color: var(--red-color);
+    }
+
+    .succs-msg {
+        font-weight: bold;
+        color: var(--blue-color);
     }
 }
 

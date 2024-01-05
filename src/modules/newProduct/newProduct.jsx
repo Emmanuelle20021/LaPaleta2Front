@@ -6,6 +6,8 @@ import BreadCrumps from '../../components/breadcrumbs/breadcrumbs.jsx'
 import getCategories from '../../services/categories.js';
 import { getSubcategories } from '../../services/subcategories.js';
 import { addProduct } from '../../services/product.js';
+import ValidationError from '../../utils/ValidationError.js';
+import swal from 'sweetalert';
 
 export function NewProduct() {
 
@@ -17,7 +19,10 @@ export function NewProduct() {
     const [file, setFile] = useState(null)
 
     const [categories, setCategories] = useState([]);
-    const [subcategories, setSubcategories] = useState([]);
+    const [subcategories, setSubcategories] = useState([])
+
+    const [errMsg, setErrMsg] = useState('')
+    const [succsMsg, setSuccsMsg] = useState('')
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -40,49 +45,71 @@ export function NewProduct() {
         setCategory($selecC.options[$selecC.selectedIndex].value)
         setSubcategory($selecS.options[$selecS.selectedIndex].value)
 
-        if(category == 0 || subcategory == 0) return;
+        setErrMsg('')
+        setSuccsMsg('')
 
-        const response = await addProduct(title,description,category,subcategory,price,file)
+        try {
+            if (!file) throw new ValidationError('Debe cargar una imagen ')
+            if (category == 0 || subcategory == 0) throw new ValidationError('Seleccione categoria y subcategoria')
 
-        return response
+            const create = await swal({
+                title: "Advertencia",
+                text: "¿Desea agregar el producto?",
+                buttons: ["Cancelar", "Aceptar"],
+                className: "success"
+            })
+
+            if (!create) return
+
+            const response = await addProduct(title, description, category, subcategory, price, file)
+            if (response.status !== 201) throw new Error()
+
+            setSuccsMsg('Producto agregado con éxito')
+        } catch (error) {
+            if (error instanceof ValidationError) {
+                setErrMsg(error.message)
+            } else {
+                setErrMsg('Hubo un problema intente de nuevo')
+            }
+        }
     }
 
     const imageChange = () => {
 
         const $selecFiles = document.querySelector('#input-upload-image')
         const $imagePreview = document.querySelector('#image-upload-preview')
-    
+
         const files = $selecFiles.files
         if (!files || !files.length) {
             $imagePreview.src = 'https://placehold.co/600x400?text=No+hay+imagen';
             return null;
         }
-    
+
         const firstFile = files[0];
-    
+
         const objectUrl = URL.createObjectURL(firstFile)
-    
+
         $imagePreview.src = objectUrl;
         setFile(firstFile);
     }
 
     return (
-        <div className='page-new-pdt'>
-            <nav className='nav-container'>
-                <Navbar></Navbar>
-            </nav>
+        <div>
+            <Navbar></Navbar>
+            <h2 className='new-pdt-title'>Añadir producto</h2>
+            <BreadCrumps routes={[{ name: 'Producto', route: 'products/' }, { name: 'Nuevo', route: 'products/new' }]}></BreadCrumps>
             <section className='add-product-page'>
-                <h1 className='title'>Añadir producto</h1>
-                <BreadCrumps routes={[{ name: 'Producto', route: 'products/' }, { name: 'Nuevo', route: 'products/new' }]}></BreadCrumps>
                 <form onSubmit={handleForm} className='adding-product-container' encType='multipart/formdata'>
                     <div className='img-container'>
                         <img src="https://placehold.co/600x400?text=No+hay+imagen" alt="imagen del producto" id='image-upload-preview' />
                         <button type="button" onClick={upload} className='add-button'>
                             <FaPlus></FaPlus>
                         </button>
-                        <input type="file" onChange={imageChange} required accept='.png,.jpg,.gif,.jpeg' className='input-upload-image' id='input-upload-image' name='input-upload-image' />
+                        <input type="file" onChange={imageChange} accept='.png,.jpg,.gif,.jpeg' className='input-upload-image' id='input-upload-image' />
                     </div>
                     <div className='form-fields'>
+                        {errMsg && <p className="err-msg">{errMsg}</p>}
+                        {succsMsg && <p className="succs-msg">{succsMsg}</p>}
                         <label htmlFor="title-input-add">Titulo:</label>
                         <input value={title} onChange={({ target }) => setTitle(target.value)} required id="title-input-add" name="title-input" placeholder="Titulo" type="text" />
                         <label htmlFor="description-input-add">Descripción:</label>
