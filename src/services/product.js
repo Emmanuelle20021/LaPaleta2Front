@@ -16,23 +16,20 @@ export async function mostSell(){
 
 export async function addProduct(title,description,category,subcategory,price,file){
 
-    const response = fetch(`${API}/product/add`, {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('nombre', title);
+    formData.append('descripcion', description);
+    formData.append('id_categoria', category);
+    formData.append('id_subcategoria', subcategory);
+    formData.append('precio', price);
+    formData.append('foto_producto', file.name);
+
+    const response = await fetch(`${API}/product/add`, {
         method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        enctype: "multipart/form-data",
-        body: JSON.stringify({
-            nombre:title,
-            descripción:description,
-            id_categoria: Number(category),
-            id_subcategoria: Number(subcategory),
-            precio:Number(price),
-            foto_producto: file.name
-        })
+        body: formData
     })
 
-    console.log(file)
-
-    return response
+    const body = await response.json()
+    return { status: response.status, ...body }
 }
