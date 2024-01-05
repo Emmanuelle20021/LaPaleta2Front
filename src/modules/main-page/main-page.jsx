@@ -5,6 +5,7 @@ import Hero from '../../components/hero/hero.jsx'
 import ProductsSlide from '../../components/products-slide/products_slide.jsx'
 import Footer from '../../components/footer/footer.jsx'
 import { mostSell } from '../../services/product.js'
+import FridgeItem from '../../components/fridge-item/fridgeItem.jsx';
 
 export function MainPage() {
   const [ mostsell, setMostSell ] = useState([])
@@ -24,6 +25,7 @@ export function MainPage() {
       </nav>
       <Hero></Hero>
       <section className='categories-product-container'>
+        <FridgeItem amount={5} product={mostsell[0]}></FridgeItem>
         <ProductsSlide title='Volver a comprar' ></ProductsSlide>
         <ProductsSlide title='Más vendidos' productsArray={mostsell}></ProductsSlide>
       </section>

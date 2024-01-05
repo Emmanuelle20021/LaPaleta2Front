@@ -8,6 +8,7 @@ import FridgeModal from './components/fridge/fridgemodal.jsx'
 import Navbar from './components/navbar/navbar.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
 import AuthProvider from './contexts/auth.jsx'
+import FridgeItem from './components/fridge-item/fridgeItem.jsx'
 
 function Products({ params: { category } }) {
   return (
