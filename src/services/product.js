@@ -29,7 +29,7 @@ export default async function getProducts(category, subcategory) {
         id: pdt.idproducto,
         name: pdt.nombre,
         img: pdt.foto_producto,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description: pdt.descripción,
         price: pdt.precio,
         category: pdt.id_categoria
     }))

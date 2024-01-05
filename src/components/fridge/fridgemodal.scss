@@ -27,7 +27,7 @@
 .inside-fridge {
     margin-top: 24px;
     margin-bottom: 24px;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 376px;
     background: url(inside-fridge.svg) top left no-repeat;
     background-size: contain;
