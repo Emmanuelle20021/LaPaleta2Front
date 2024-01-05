@@ -62,6 +62,7 @@
     border-radius: 50%;
     object-position: center center;
     object-fit: contain;
+    aspect-ratio: 1;
     box-shadow: var(--shadow);
     border: 0.5px var(--dark-font-color) solid;
 }

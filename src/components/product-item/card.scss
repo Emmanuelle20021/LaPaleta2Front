@@ -2,10 +2,10 @@
     height: 100%;
     width: 100%;
     padding: 1.5rem;
-    max-width: 14rem;
 }
+
 .product-card{
-    width: auto;
+    width: 12rem;
     height: 100%;
     background-color: var(--white-color);
     border-radius: 10px;
@@ -65,7 +65,10 @@
     padding: .5rem 0;
 }
 .product-title{
-    width: 100%;
+    // width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     height: auto;
     font-size: 1.2rem;
     background-color: var(--blue-color);

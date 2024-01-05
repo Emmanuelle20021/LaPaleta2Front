@@ -30,6 +30,8 @@
 }
 
 .products-list-vertical {
+    padding: 0rem 1rem;
+    justify-items: center;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 
