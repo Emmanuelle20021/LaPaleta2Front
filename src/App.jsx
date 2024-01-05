@@ -2,6 +2,8 @@ import { Route, Switch } from 'wouter'
 import './App.scss'
 import { Login } from './modules/login/login.jsx'
 import { MainPage } from './modules/main-page/main-page.jsx'
+import { Register } from './modules/register/register.jsx'
+import { NewProduct } from './modules/newProduct/newProduct.jsx'
 import FridgeModal from './components/fridge/fridgemodal.jsx'
 import FridgeProvider from './contexts/fridge.jsx'
 import AuthProvider from './contexts/auth.jsx'
@@ -22,7 +24,8 @@ function App() {
         <Switch>
           <Route path='/' component={MainPage} />
           <Route path='/login' component={Login}> Estas en el inicio de sesión </Route>
-          <Route path='/register'> Estas en el registro </Route>
+          <Route path='/register' component={Register}> Estas en el registro </Route>
+          <Route path='/resetpw'> Estas en la recupertación de la contraseña </Route>
 
           {/* Only Custumer */}
           <Route path='/fridge' component={Fridge}/>
@@ -32,7 +35,7 @@ function App() {
 
           {/* Only Admin */}
           <Route path='/products'> Vista de productos del vendedor </Route>
-          <Route path='/products/new'> Agregar nuevo producto </Route>
+          <Route path='/products/new' component={NewProduct}> Agregar nuevo producto </Route>
 
           {/* Only Customer  */}
           <Route path='/products/:category' component={ProductCategory} />

@@ -36,3 +36,23 @@ export default async function getProducts(category, subcategory) {
 
     return mapPdts
 }
+
+export async function addProduct(title,description,category,subcategory,price,file){
+
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('nombre', title);
+    formData.append('descripcion', description);
+    formData.append('id_categoria', category);
+    formData.append('id_subcategoria', subcategory);
+    formData.append('precio', price);
+    formData.append('foto_producto', file.name);
+
+    const response = await fetch(`${API}/product/add`, {
+        method: 'POST',
+        body: formData
+    })
+
+    const body = await response.json()
+    return { status: response.status, ...body }
+}
