@@ -1,0 +1,117 @@
+.product-card-fridge{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    grid-template-rows: auto;
+    gap: .5rem;
+}
+
+.button{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: var(--btn-color);
+    border: 1px solid var(--dark-font-color);
+    width: 2rem;
+    height: 5rem;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 6;
+}
+
+.img-container-fridge{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.background-img{
+    padding: .5rem;
+    border-radius: 10px;
+    background-color: var(--white-color);
+    border: 1px solid var(--dark-font-color);
+    object-fit: contain;
+    z-index: 7;
+}
+
+.price-container-fridge{
+    display: flex;
+    background-color: var(--white-color);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid var(--dark-font-color);
+    padding: .2rem 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+.price-container-fridge::before{
+    content: "";
+    display: flex;
+    width: 99%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(184, 181, 181);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%,-102%);
+}
+
+.amount-container-fridge{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--pink-color);
+    width: fit-content;
+    padding: .3rem .8rem;
+    border-radius: 5px;
+    border: 1px solid var(--dark-font-color);
+    position: absolute;
+    top:0;
+    right: 0;
+    transform: translate(-50%,-80%) rotate(-5deg);
+}
+
+.product-name-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem .5rem;
+    position: relative;
+    background-color: var(--white-color);
+    border: 1px solid var(--dark-font-color);
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.card-fridge{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.img-container-fridge:hover{
+    .button-rigth-fridge{
+        --btn-color: var(--blue-color);
+        transform: translate(130%,0) rotate(10deg);
+    }
+    .button-left-fridge{
+        --btn-color: var(--pink-color);
+        transform: translate(-130%,0) rotate(-10deg);
+    }
+}
+
+.info-container-fridge{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 7;
+}
+
+.content-info{
+    width: 90%;
+}

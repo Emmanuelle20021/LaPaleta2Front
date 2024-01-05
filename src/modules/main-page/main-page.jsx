@@ -7,6 +7,8 @@ import Footer from '../../components/footer/footer.jsx'
 import { mostSell } from '../../services/product.js'
 import { useRoute } from 'wouter';
 import { navigate } from 'wouter/use-location';
+import FridgeItem from '../../components/fridge-item/fridgeItem.jsx';
+import CardAdmin from '../../components/product-item-admin/card.jsx';
 
 export function MainPage() {
   const [ mostsell, setMostSell ] = useState([])
