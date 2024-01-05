@@ -67,7 +67,7 @@ export function NewProduct() {
     }
 
     return (
-        <div className='page'>
+        <div className='page-new-pdt'>
             <nav className='nav-container'>
                 <Navbar></Navbar>
             </nav>
