@@ -18,4 +18,31 @@
             }
         }
     }
+
+    button {
+        cursor: pointer;
+        color: var(--white-color);
+        background-color: var(--pink-color);
+        padding: 0.5rem;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        box-shadow: var(--shadow);
+        border-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        transition: opacity 100ms ease-out;
+
+        &:active {
+            opacity: 0.5;
+            transition: opacity 100ms ease-out;
+        }
+
+        svg {
+            fill: var(--white-color)
+        }
+    }
 }

@@ -3,6 +3,7 @@ import './fridgemodal.scss'
 
 import { Link, useLocation } from 'wouter'
 import useFridge from '../../customhooks/useFridgeContext'
+import FridgeItem from '../fridge-item/fridgeItem'
 
 export default function Modal() {
 
@@ -13,6 +14,7 @@ export default function Modal() {
         isShowFridge,
         products,
         reduceProduct,
+        addProduct,
         removeProduct
     } = useFridge()
 
@@ -36,20 +38,25 @@ export default function Modal() {
 
     const handleMinus = (product) => () => reduceProduct(product)
     const handleRemove = (product) => () => removeProduct(product)
-    const goToFridge = () => navigate('/fridge' )
+    const goToFridge = () => navigate('/fridge')
 
     return (
         <div ref={fridge} className={'modal-fridge ' + (isShowFridge ? 'active-modal-fridge' : 'inactive-modal-fridge')}>
             <h2 className='border'>Mi nevera</h2>
             <div className='inside-fridge'>
                 {products.map(pdt =>
-                    <p key={pdt.id} onClick={handleMinus(pdt)} onDoubleClick={handleRemove(pdt)}>
-                        {pdt.id}, {pdt.name}, {pdt.amount}
-                    </p>)}
+                    <FridgeItem
+                        inside
+                        amount={pdt.amount}
+                        product={pdt}
+                        onMinus={() => reduceProduct(pdt)}
+                        onPlus={() => addProduct(pdt)}
+                    />)
+                }
             </div>
             <div className='cost border'>
                 <h2>Total del pedido: <span>{`$${totalCost}`}</span></h2>
-                <button className='button' onClick={goToFridge}>Ordenar</button>
+                <button className='modal-fridge-bttn' onClick={goToFridge}>Ordenar</button>
             </div>
             <Link href='/orders'>
                 <a className='link'>Ver pedidos</a>

@@ -16,7 +16,6 @@ export default function Navbar() {
     const [showModal, setShowModal] = useState(false)
     const [_, navigate] = useLocation()
     const categories = useCategories()
-    console.log(categories)
     const btnUserIcon = useRef()
 
     useEffect(() => {

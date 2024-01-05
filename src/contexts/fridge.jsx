@@ -51,11 +51,16 @@ export default function FridgeProvider({ children }) {
         setProducts(newProducts)
     }
 
+    const removeAllProducts = () => {
+        updateLocalStorage([])
+        setProducts([])
+    }
+
     const showFridge = () => setShowFridge(true)
     const closeFridge = () => setShowFridge(false)
 
     return (
-        <FridgeContext.Provider value={{ addProduct, removeProduct, reduceProduct, products, showFridge, closeFridge, isShowFridge }}>
+        <FridgeContext.Provider value={{ addProduct, removeProduct, removeAllProducts, reduceProduct, products, showFridge, closeFridge, isShowFridge }}>
             {children}
         </FridgeContext.Provider>
     )
