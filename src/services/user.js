@@ -41,3 +41,16 @@ export async function verifyPwd(token, pwd) {
         return { status: response.status, ...body }
     }
 }
+
+export async function getUserData(token, id) {
+    const response = await fetch(`${API}/user/${id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const body = await response.json()
+
+    return { status: response.status, ...body }
+}

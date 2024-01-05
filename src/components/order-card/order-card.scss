@@ -1,0 +1,108 @@
+.order-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 14rem;
+    padding: 1rem;
+    background-color: #EEEEEE;
+    border: 1px var(--dark-font-color) solid;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.order-card-pdts-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 6rem;
+
+    img {
+        width: 2rem;
+        aspect-ratio: 1;
+        background-color: var(--white-color);
+        background-color: var(--white-color);
+        border-radius: 50%;
+        object-fit: contain;
+        box-shadow: var(--shadow);
+        border: 0.5px var(--dark-font-color) solid;
+    }
+
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .id-order {
+        font-size: 1.5rem;
+        font-weight: bold;
+
+        &::before {
+            content: '#';
+        }
+
+    }
+
+}
+
+.order-card-datetime {
+    display: flex;
+    flex-direction: column;
+
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+.order-clientname {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.order-card-row-detail {
+    display: flex;
+    gap: 1rem;
+
+    .amount-pdt {
+        width: 2rem;
+    }
+
+    .name-pdt {
+        width: 8rem;
+        height: 2rem;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.elipsis {
+    margin: 0 auto;
+}
+
+.order-card-footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px var(--dark-font-color) solid;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+
+    p {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+}
+
+.order-card-state {
+    color: var(--purple-color);
+}
+
+.order-card-total {
+    color: var(--red-color);
+}
+
+.order-card-total::before {
+    content: '$ ';
+}

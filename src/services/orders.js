@@ -25,10 +25,24 @@ export async function addOrderDetail(token, idorder, products) {
             'Content-type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ id_pedido: idorder, productos: products})
+        body: JSON.stringify({ id_pedido: idorder, productos: products })
     })
 
     const body = await response.json()
 
     return { status: response.status, ...body }
+}
+
+export async function getOrdersDetails(token, id) {
+    const response = await fetch(`${API}/order/user/${id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const body = await response.json()
+
+    return { status: response.status, body }
+
 }
