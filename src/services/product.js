@@ -31,7 +31,8 @@ export default async function getProducts(category, subcategory) {
         img: pdt.foto_producto,
         description: pdt.descripción,
         price: pdt.precio,
-        category: pdt.id_categoria
+        category: pdt.id_categoria,
+        subcategory: pdt.id_subcategoria
     }))
 
     return mapPdts
