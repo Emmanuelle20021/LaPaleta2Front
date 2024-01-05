@@ -64,7 +64,7 @@ export function ProductDetail({ params: { category, idProduct } }) {
                 buttons: ['Cancelar', 'Ir']
             })
 
-            if (goToLogin) navigate('/login', { replace: true })
+            if (goToLogin) navigate('/login' )
 
             return
         }

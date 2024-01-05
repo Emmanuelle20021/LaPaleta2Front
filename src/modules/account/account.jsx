@@ -35,7 +35,7 @@ export function Account() {
             closeOnClickOutside: false
         })
 
-        navigate("/login", { replace: true })
+        navigate("/login" )
     }
 
     const updateProfile = async (e) => {

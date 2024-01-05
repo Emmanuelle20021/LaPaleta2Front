@@ -8,6 +8,7 @@ export default async function getCategories() {
     const mapCtgs = ctgs.map((pdt) => ({
         id: pdt.idcategoria,
         name: pdt.nombre,
+        ref: pdt.nombre
     }))
 
     return mapCtgs

@@ -13,7 +13,7 @@ export default function ProductsSlide({ title, productsArray, vertical = false }
 
     const goTo = (idCtg, idPdt) => () => {
         const {name: nameCtg} = ctgs.find(ctg => ctg.id === idCtg)
-        navigate(`/products/${nameCtg}/${idPdt}`, { replace: true })
+        navigate(`/products/${nameCtg}/${idPdt}` )
     }
 
     return (

@@ -34,7 +34,7 @@ export function Login() {
 
         setToken(response.accessToken)
 
-        navigate('/', { replace: true })
+        navigate('/' )
     }
 
     return <div className="page grid-login">

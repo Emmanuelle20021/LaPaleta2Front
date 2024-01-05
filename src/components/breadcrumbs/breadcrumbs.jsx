@@ -13,7 +13,7 @@ export default function BreadCrumbs({ routes }) {
 
     const [_, navigate] = useLocation()
 
-    const goTo = (path) => () => navigate(path, { replace: true })
+    const goTo = (path) => () => navigate(path )
     let fullPath = ''
 
     const mapRoutes = routes.map((ele) => {

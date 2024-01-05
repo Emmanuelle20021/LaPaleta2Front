@@ -5,9 +5,17 @@ import Hero from '../../components/hero/hero.jsx'
 import ProductsSlide from '../../components/products-slide/products_slide.jsx'
 import Footer from '../../components/footer/footer.jsx'
 import { mostSell } from '../../services/product.js'
+import { useRoute } from 'wouter';
+import { navigate } from 'wouter/use-location';
 
 export function MainPage() {
   const [ mostsell, setMostSell ] = useState([])
+  const [match] = useRoute('/')
+
+  useEffect(() => {
+    if(match) return
+    navigate('/')
+  }, [match])
 
   useEffect(() => {
     const fetchProducts = async () =>{

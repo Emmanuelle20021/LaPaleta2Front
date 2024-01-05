@@ -1,4 +1,4 @@
-import { API } from "../constants/properties";
+import { API, ROL } from "../constants/properties";
 
 export default async function register(name, email, cellphone ,pwd) {
     const response = await fetch(`${API}/user/register`, {
@@ -11,7 +11,7 @@ export default async function register(name, email, cellphone ,pwd) {
             correo: email,
             telefono: cellphone,
             contraseña: pwd,
-            id_rol: 1
+            id_rol: ROL.COSTUMER
         })
     })
     return { status: response.status }

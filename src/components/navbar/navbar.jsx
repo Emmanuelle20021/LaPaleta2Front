@@ -7,15 +7,16 @@ import useFridge from '../../customhooks/useFridgeContext.jsx';
 import { useLocation } from 'wouter'
 import { AuthContext } from '../../contexts/auth.jsx';
 import useCategories from '../../customhooks/useCategories.jsx';
+import { ROL } from '../../constants/properties.js';
 
 export default function Navbar() {
-    const { token, cleanToken } = useContext(AuthContext)
+    const { token, usrData, cleanToken } = useContext(AuthContext)
     const { showFridge } = useFridge()
     const [showed, setShowed] = useState(false)
     const [showModal, setShowModal] = useState(false)
     const [_, navigate] = useLocation()
     const categories = useCategories()
-
+    console.log(categories)
     const btnUserIcon = useRef()
 
     useEffect(() => {
@@ -46,21 +47,22 @@ export default function Navbar() {
     }
 
     function goTo(ref) {
-        return () => navigate(`/products/${ref}`, { replace: true })
+        if(usrData.id_rol === ROL.ADMIN) return () => navigate(`/${ref}`)
+        return () => navigate(`/products/${ref}`)
     }
 
     function returnToMenu() {
-        navigate("/", { replace: true })
+        navigate("/" )
     }
 
     function manageModalAccount() {
         if (token) setShowModal(true)
-        else navigate("/login", { replace: true })
+        else navigate("/login" )
     }
 
     function handleLogout() {
         cleanToken()
-        navigate('/login', { replace: true })
+        navigate("/login" )
     }
 
     return (
@@ -75,7 +77,7 @@ export default function Navbar() {
                             categories.map(categorie => {
                                 return (
                                     <li key={categorie.name} className='categories-item'>
-                                        <button className='categorie-button' onClick={goTo(categorie.name)}>{categorie.name}</button>
+                                        <button className='categorie-button' onClick={goTo(categorie.ref)}>{categorie.name}</button>
                                     </li>
                                 );
                             })
@@ -84,11 +86,11 @@ export default function Navbar() {
                             <button ref={btnUserIcon} className='categorie-button' onClick={manageModalAccount}>
                                 <UserIcon></UserIcon>
                             </button>
-                            {token && <button className='categorie-button' onClick={showFridge}>
+                            {token && usrData.id_rol === ROL.COSTUMER && <button className='categorie-button' onClick={showFridge}>
                                 <KitchenIcon></KitchenIcon>
                             </button>
                             }
-                            <Account showModal={showModal} onClickAccount={() => navigate('/account', { replace: true })} onLogout={handleLogout} />
+                            <Account showModal={showModal} onClickAccount={() => navigate('/account' )} onLogout={handleLogout} />
                         </li>
                     </ul>
                 </section>
