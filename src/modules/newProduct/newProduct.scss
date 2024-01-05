@@ -23,12 +23,21 @@
     position: relative;
     flex-direction: column;
     object-fit: contain;
-    max-width: 30vw;
-    max-height: 50vh;
+    max-width: 25rem;
+    max-height: 25rem;
     border: 1px solid var(--dark-font-color);
     border-radius: 10px;
     padding: 1rem;
     background-color: var(--blue-color);
+
+    img {
+        width: 23rem;
+        height: 23rem;
+        object-fit: contain;
+        background-color: var(--white-color);
+        border-radius: 50%;
+    }
+
 }
 
 .add-button{
